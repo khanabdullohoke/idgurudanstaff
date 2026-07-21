@@ -412,7 +412,7 @@
     display:flex;flex-direction:column;gap:7px;
   }
   .dir-detail-row{display:flex;align-items:baseline;gap:8px;font-size:11.5px;}
-  .dir-detail-row .label{color:var(--abu);flex-shrink:0;width:64px;}
+  .dir-detail-row .label{color:var(--abu);flex-shrink:0;width:84px;white-space:nowrap;}
   .dir-detail-row .value{color:#1f2937;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .dir-empty{
     grid-column:1/-1;
@@ -560,7 +560,7 @@
         <h1>Kartu ID Digital untuk <span>Guru & Tenaga Kependidikan</span></h1>
         <p class="lead">
           Satu halaman untuk melihat data kepegawaian aktif dan mencetak kartu identitas resmi
-          kapan saja — lengkap dengan foto dan QR code verifikasi, tanpa perlu antre ke ruang Tata Usaha.
+          kapan saja — lengkap dengan foto dan QR code verifikasi, tanpa perlu antre ke ruang Tenaga Administrasi Sekolah (TAS).
         </p>
         <div class="hero-badges">
           <div class="hero-badge"><span class="dot"></span>Data selalu diperbarui admin</div>
@@ -664,7 +664,7 @@
             <div class="fp-points">
               <div class="fp-point">
                 <div class="fp-point-num">1</div>
-                <div><strong>Kode Sekolah</strong><p>Kunci umum dari admin/Tata Usaha, sama untuk semua warga sekolah.</p></div>
+                <div><strong>Kode Sekolah</strong><p>Kunci umum dari admin/Tenaga Administrasi Sekolah (TAS), sama untuk semua warga sekolah.</p></div>
               </div>
               <div class="fp-point">
                 <div class="fp-point-num">2</div>
@@ -680,7 +680,7 @@
           <div class="form-panel-fields">
             <label for="kodeSekolah">Kode Sekolah</label>
             <input type="password" id="kodeSekolah" placeholder="Masukkan kode sekolah" autocomplete="off">
-            <div class="hint">Kode ini diberikan oleh admin/Tata Usaha sekolah.</div>
+            <div class="hint">Kode ini diberikan oleh admin/Tenaga Administrasi Sekolah (TAS).</div>
 
             <label for="namaSelect">Pilih Nama Anda</label>
             <select id="namaSelect">
@@ -724,7 +724,7 @@
               Data yang ditambahkan lewat form ini akan <strong>langsung berstatus Aktif</strong> dan tampil di direktori. Wajib memasukkan Kata Sandi Admin.
             </div>
             <div class="mode-note mandiri" id="modeNoteMandiri" style="display:none;">
-              Data Anda akan berstatus <strong>Menunggu</strong> sampai diverifikasi oleh admin/Tata Usaha. Tidak perlu kata sandi apa pun.
+              Data Anda akan berstatus <strong>Menunggu</strong> sampai diverifikasi oleh admin/Tenaga Administrasi Sekolah (TAS). Tidak perlu kata sandi apa pun.
             </div>
           </div>
 
@@ -768,7 +768,7 @@
             </div>
 
             <label for="tambahJabatan">Jabatan / Mapel / Bidang</label>
-            <input type="text" id="tambahJabatan" placeholder="Contoh: Guru Matematika / Staf Tata Usaha">
+            <input type="text" id="tambahJabatan" placeholder="Contoh: Guru Matematika / Staf Tenaga Administrasi Sekolah (TAS)">
 
             <label>Foto (opsional)</label>
             <div class="foto-upload">
@@ -792,7 +792,7 @@
       <div class="card">
         <div class="faq-head">
           <h2>Pertanyaan yang Sering Diajukan</h2>
-          <p>Belum menemukan jawabannya? Hubungi admin/Tata Usaha sekolah.</p>
+          <p>Belum menemukan jawabannya? Hubungi admin/Tenaga Administrasi Sekolah (TAS).</p>
         </div>
         <div id="faqContainer"></div>
       </div>
@@ -1171,11 +1171,11 @@
     },
     {
       q: 'Bagaimana jika saya lupa PIN Pribadi?',
-      a: 'Hubungi admin/Tata Usaha sekolah untuk mereset atau melihat kembali PIN Anda. PIN tidak dapat dilihat sendiri melalui halaman ini demi keamanan data.'
+      a: 'Hubungi admin/Tenaga Administrasi Sekolah (TAS) untuk mereset atau melihat kembali PIN Anda. PIN tidak dapat dilihat sendiri melalui halaman ini demi keamanan data.'
     },
     {
       q: 'Kenapa nama saya tidak muncul di daftar?',
-      a: 'Daftar hanya menampilkan pegawai dengan status "Aktif" di data sekolah. Jika nama Anda belum muncul, kemungkinan status Anda belum diperbarui — silakan hubungi admin/Tata Usaha.'
+      a: 'Daftar hanya menampilkan pegawai dengan status "Aktif" di data sekolah. Jika nama Anda belum muncul, kemungkinan status Anda belum diperbarui — silakan hubungi admin/Tenaga Administrasi Sekolah (TAS).'
     },
     {
       q: 'Apa yang terjadi jika saya salah memasukkan PIN berkali-kali?',
@@ -1195,11 +1195,11 @@
     },
     {
       q: 'Bagaimana cara guru/tendik baru mendaftarkan diri?',
-      a: 'Buka tab "Tambah Data", pilih mode "Guru/Tendik Baru", isi data diri lengkap dan foto (opsional), lalu kirim. Data akan berstatus "Menunggu" sampai diverifikasi dan diaktifkan oleh admin/Tata Usaha.'
+      a: 'Buka tab "Tambah Data", pilih mode "Guru/Tendik Baru", isi data diri lengkap dan foto (opsional), lalu kirim. Data akan berstatus "Menunggu" sampai diverifikasi dan diaktifkan oleh admin/Tenaga Administrasi Sekolah (TAS).'
     },
     {
       q: 'Kenapa data yang baru saya daftarkan belum muncul di direktori?',
-      a: 'Pendaftaran mandiri butuh verifikasi admin terlebih dulu sebelum berstatus Aktif. Jika sudah lama menunggu, silakan hubungi admin/Tata Usaha sekolah.'
+      a: 'Pendaftaran mandiri butuh verifikasi admin terlebih dulu sebelum berstatus Aktif. Jika sudah lama menunggu, silakan hubungi admin/Tenaga Administrasi Sekolah (TAS).'
     }
   ];
 
