@@ -4,19 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kartu ID Guru & Tenaga Kependidikan - SMKS Ciledug Al Musaddadiyah Garut</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --biru-cerah: #0d6efd;
     --biru-tua: #084298;
+    --biru-langit: #1e88f5;
     --biru-muda: #e8f1ff;
     --biru-gradasi: linear-gradient(135deg, #1e88f5 0%, #0d6efd 55%, #084298 100%);
+    --aksen: #f5a623;
+    --aksen-gelap: #c9790e;
     --putih: #ffffff;
     --abu: #6b7280;
+    --abu-muda: #f3f6fb;
     --merah: #dc2626;
     --hijau: #16a34a;
     --radius: 14px;
+    --radius-lg: 22px;
     --shadow: 0 10px 30px rgba(13,110,253,0.18);
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --shadow-lg: 0 20px 50px rgba(8,66,152,0.22);
+    --font-display: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   }
   *{box-sizing:border-box;}
   body{
@@ -24,22 +34,189 @@
     background: var(--biru-muda);
     color:#1f2937;
     min-height:100vh;
-    padding:24px 12px;
+    font-family: var(--font-body);
   }
-  .wrap{max-width:480px;margin:0 auto;}
-  .header{
+  h1,h2{font-family: var(--font-display);}
+
+  /* ---------- PAGE / LAYOUT WRAPPERS ---------- */
+  .page{max-width:1080px;margin:0 auto;padding:0 20px 60px;}
+  .app-wrap{max-width:560px;margin:0 auto;}
+
+  /* ---------- HERO ---------- */
+  .hero{
     background: var(--biru-gradasi);
     color:var(--putih);
-    border-radius: var(--radius);
-    padding:22px 20px;
-    text-align:center;
-    box-shadow: var(--shadow);
-    margin-bottom:18px;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    padding:44px 24px 40px;
+    margin-bottom:36px;
+    box-shadow: var(--shadow-lg);
+    position:relative;
+    overflow:hidden;
   }
-  .header .sekolah{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;opacity:.9;margin-bottom:4px;}
-  .header h1{margin:0;font-size:19px;font-weight:700;}
-  .header p{margin:6px 0 0;font-size:12.5px;opacity:.9;}
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 90% 12%, rgba(255,255,255,0.14) 0%, transparent 45%),
+      radial-gradient(circle at 8% 90%, rgba(255,255,255,0.10) 0%, transparent 40%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    max-width:1080px;margin:0 auto;
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:34px;
+    align-items:center;
+    position:relative;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;
+    font-weight:700;opacity:.95;
+    background:rgba(255,255,255,0.14);
+    padding:6px 13px;border-radius:20px;
+    margin-bottom:16px;
+  }
+  .hero h1{
+    margin:0 0 14px;
+    font-size:clamp(26px, 4.2vw, 38px);
+    font-weight:800;
+    line-height:1.18;
+    letter-spacing:-0.3px;
+  }
+  .hero h1 span{color:#ffd98c;}
+  .hero p.lead{
+    margin:0 0 22px;
+    font-size:15px;
+    line-height:1.65;
+    opacity:.93;
+    max-width:520px;
+  }
+  .hero-badges{display:flex;flex-wrap:wrap;gap:9px;}
+  .hero-badge{
+    display:flex;align-items:center;gap:7px;
+    background:rgba(255,255,255,0.13);
+    border:1px solid rgba(255,255,255,0.25);
+    padding:8px 13px;border-radius:11px;
+    font-size:12px;font-weight:600;
+  }
+  .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--aksen);flex-shrink:0;}
 
+  /* ---------- SIGNATURE: MOCKUP ID CARD ---------- */
+  .hero-visual{display:flex;justify-content:center;}
+  .id-mock{
+    width:250px;
+    background: linear-gradient(160deg, #ffffff 0%, #f4f8ff 100%);
+    border-radius:18px;
+    padding:16px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.28);
+    transform: rotate(-4deg);
+    position:relative;
+    color:#1f2937;
+  }
+  .id-mock::before{
+    content:"";
+    position:absolute; top:-9px; left:50%; transform:translateX(-50%);
+    width:56px; height:16px; border-radius:0 0 10px 10px;
+    background:rgba(255,255,255,0.55);
+  }
+  .id-mock-top{
+    background: var(--biru-gradasi);
+    border-radius:10px;
+    padding:8px 10px;
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:14px;
+  }
+  .id-mock-top span{color:#fff;font-size:8.5px;font-weight:700;letter-spacing:.5px;}
+  .id-mock-top .badge-aktif{
+    background:var(--aksen);color:#5c3a00;font-size:7.5px;font-weight:800;
+    padding:2px 7px;border-radius:20px;letter-spacing:.3px;
+  }
+  .id-mock-body{display:flex;gap:12px;align-items:center;margin-bottom:14px;}
+  .id-mock-photo{
+    width:54px;height:54px;border-radius:50%;
+    background: var(--biru-muda);
+    border:2.5px solid var(--biru-cerah);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .id-mock-photo svg{width:26px;height:26px;color:var(--biru-cerah);}
+  .id-mock-lines{flex:1;display:flex;flex-direction:column;gap:6px;}
+  .id-mock-lines .l1{height:9px;width:88%;background:#c8dcfb;border-radius:4px;}
+  .id-mock-lines .l2{height:7px;width:65%;background:#dde9fc;border-radius:4px;}
+  .id-mock-lines .l3{height:7px;width:75%;background:#dde9fc;border-radius:4px;}
+  .id-mock-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .id-mock-qr{
+    width:38px;height:38px;border-radius:6px;
+    background-image:
+      linear-gradient(#1f2937 40%, transparent 0),
+      linear-gradient(90deg, #1f2937 40%, transparent 0);
+    background-size: 8px 8px;
+    background-color:#eef3fb;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .id-mock-foot small{font-size:7.5px;color:var(--abu);line-height:1.4;}
+
+  /* ---------- CARA KERJA ---------- */
+  .steps-head{text-align:center;margin-bottom:22px;}
+  .steps-head .eyebrow{
+    font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;
+    font-weight:700;color:var(--biru-cerah);margin-bottom:6px;
+  }
+  .steps-head h2{margin:0 0 6px;font-size:20px;color:#1f2937;}
+  .steps-head p{margin:0;font-size:13px;color:var(--abu);}
+
+  .steps-grid{
+    display:grid;grid-template-columns:1fr;gap:14px;
+    margin-bottom:38px;
+  }
+  .step-card{
+    background:var(--putih);
+    border-radius:16px;
+    padding:20px 18px;
+    box-shadow: var(--shadow);
+    position:relative;
+  }
+  .step-num{
+    width:30px;height:30px;border-radius:9px;
+    background: var(--biru-gradasi);
+    color:#fff;font-weight:800;font-size:13.5px;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:12px;
+  }
+  .step-card h3{margin:0 0 6px;font-size:14.5px;font-family:var(--font-display);color:#1f2937;}
+  .step-card p{margin:0;font-size:12.5px;line-height:1.55;color:var(--abu);}
+
+  /* ---------- TABS ---------- */
+  .tabs{
+    display:flex;
+    gap:6px;
+    background:var(--putih);
+    padding:5px;
+    border-radius:12px;
+    box-shadow: var(--shadow);
+    margin-bottom:16px;
+  }
+  .tab-btn{
+    flex:1;
+    border:none;
+    background:transparent;
+    color:var(--biru-tua);
+    font-weight:700;
+    font-size:13px;
+    padding:10px 6px;
+    border-radius:9px;
+    cursor:pointer;
+    transition:.15s;
+    font-family: var(--font-body);
+  }
+  .tab-btn.active{
+    background:var(--biru-gradasi);
+    color:#fff;
+  }
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  /* ---------- CARD ---------- */
   .card{
     background:var(--putih);
     border-radius: var(--radius);
@@ -63,6 +240,7 @@
     font-size:14.5px;
     background:#fbfdff;
     transition:.15s;
+    font-family: var(--font-body);
   }
   select:focus, input:focus{
     outline:none;
@@ -84,6 +262,7 @@
     letter-spacing:.3px;
     cursor:pointer;
     transition:.15s;
+    font-family: var(--font-body);
   }
   button:hover:not(:disabled){filter:brightness(1.05);transform:translateY(-1px);}
   button:disabled{opacity:.6;cursor:not-allowed;}
@@ -118,48 +297,250 @@
     padding:11px 18px;border-radius:10px;
     text-decoration:none;font-weight:700;font-size:14px;
   }
+
+  /* ---------- DIRECTORY (TAB 1) ---------- */
+  .dir-head h2{margin:0 0 4px;font-size:16.5px;color:var(--biru-tua);}
+  .dir-head p{margin:0 0 16px;font-size:12.5px;color:var(--abu);}
+
+  .dir-filters{
+    display:flex;
+    gap:8px;
+    margin-bottom:14px;
+  }
+  .dir-filters select{width:40%;}
+  .dir-filters input{width:60%;}
+
+  .dir-list{display:flex;flex-direction:column;gap:10px;}
+  .dir-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--abu-muda);
+    border:1px solid #e3ecfb;
+    border-radius:12px;
+    padding:10px 12px;
+  }
+  .dir-avatar{
+    width:48px;height:48px;border-radius:50%;
+    object-fit:cover;flex-shrink:0;
+    background:var(--biru-gradasi);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-weight:700;font-size:15px;
+    border:2px solid #fff;
+    box-shadow:0 2px 6px rgba(13,110,253,0.25);
+  }
+  .dir-info{flex:1;min-width:0;}
+  .dir-nama{font-weight:700;font-size:14px;color:#1f2937;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .dir-sub{font-size:11.5px;color:var(--abu);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .dir-badge{
+    font-size:10.5px;font-weight:700;
+    color:var(--biru-tua);background:var(--biru-muda);
+    padding:3px 9px;border-radius:20px;
+    flex-shrink:0;white-space:nowrap;
+  }
+  .dir-empty{
+    text-align:center;color:var(--abu);font-size:13px;
+    padding:26px 10px;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-head h2{margin:0 0 4px;font-size:16.5px;color:var(--biru-tua);}
+  .faq-head p{margin:0 0 14px;font-size:12.5px;color:var(--abu);}
+  .faq-item{border-bottom:1px solid #e3ecfb;}
+  .faq-item:last-child{border-bottom:none;}
+  .faq-q{
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    padding:13px 4px;
+    margin:0;
+    font-size:13.5px;
+    font-weight:700;
+    color:#1f2937;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+  }
+  .faq-q:hover{color:var(--biru-cerah);}
+  .faq-q .icon{
+    flex-shrink:0;width:20px;height:20px;
+    border-radius:50%;background:var(--biru-muda);color:var(--biru-tua);
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;font-weight:700;transition:.15s;
+  }
+  .faq-item.open .faq-q .icon{transform:rotate(45deg);background:var(--biru-gradasi);color:#fff;}
+  .faq-a{
+    max-height:0;overflow:hidden;
+    font-size:13px;line-height:1.6;color:var(--abu);
+    transition:max-height .2s ease;
+  }
+  .faq-item.open .faq-a{max-height:260px;}
+  .faq-a p{margin:0 4px 14px;}
+
   .footer{text-align:center;font-size:11.5px;color:var(--abu);margin-top:10px;}
+
+  /* ---------- RESPONSIVE: DESKTOP / TABLET ---------- */
+  @media (min-width: 760px){
+    .hero{padding:56px 44px;}
+    .hero-inner{grid-template-columns: 1.15fr 0.85fr;gap:50px;}
+    .hero p.lead{font-size:16px;}
+    .steps-grid{grid-template-columns:repeat(3,1fr);}
+  }
+  @media (min-width: 900px){
+    .app-wrap{max-width:640px;}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="page">
 
-  <div class="header">
-    <div class="sekolah">SMKS Ciledug Al Musaddadiyah Garut</div>
-    <h1>Kartu ID Digital</h1>
-    <p>Khusus Guru & Tenaga Kependidikan Aktif</p>
-  </div>
-
-  <div class="card" id="stepKode">
-    <label for="kodeSekolah">Kode Sekolah</label>
-    <input type="password" id="kodeSekolah" placeholder="Masukkan kode sekolah" autocomplete="off">
-    <div class="hint">Kode ini diberikan oleh admin/Tata Usaha sekolah.</div>
-    <button id="btnBukaForm">Lanjutkan</button>
-    <div class="msg" id="msgKode"></div>
-  </div>
-
-  <div class="card" id="stepForm" style="display:none;">
-    <label for="namaSelect">Pilih Nama Anda</label>
-    <select id="namaSelect">
-      <option value="">-- Memuat daftar nama... --</option>
-    </select>
-    <div class="hint">Hanya guru/tenaga kependidikan berstatus aktif yang muncul di daftar ini.</div>
-
-    <label for="pin">PIN Pribadi</label>
-    <input type="password" id="pin" placeholder="6 digit PIN" inputmode="numeric" maxlength="6" autocomplete="off">
-    <div class="hint">PIN pribadi Anda diberikan oleh admin, bersifat rahasia. Jangan dibagikan.</div>
-
-    <button id="btnBuat">Buat & Unduh Kartu ID</button>
-    <div class="msg" id="msgForm"></div>
-
-    <div class="result" id="hasil">
-      <iframe id="previewPdf" title="Preview Kartu ID"></iframe>
-      <br>
-      <a class="btn-download" id="linkDownload" download>Unduh PDF Kartu ID</a>
+  <!-- ===================== HERO / NARASI ===================== -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow">🏫 SMKS Ciledug Al Musaddadiyah Garut</div>
+        <h1>Kartu ID Digital untuk <span>Guru & Tenaga Kependidikan</span></h1>
+        <p class="lead">
+          Satu halaman untuk melihat data kepegawaian aktif dan mencetak kartu identitas resmi
+          kapan saja — lengkap dengan foto dan QR code verifikasi, tanpa perlu antre ke ruang Tata Usaha.
+        </p>
+        <div class="hero-badges">
+          <div class="hero-badge"><span class="dot"></span>Data selalu diperbarui admin</div>
+          <div class="hero-badge"><span class="dot"></span>Diamankan Kode Sekolah + PIN</div>
+          <div class="hero-badge"><span class="dot"></span>QR code verifikasi otomatis</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="id-mock">
+          <div class="id-mock-top">
+            <span>SMKS CILEDUG AL-M</span>
+            <span class="badge-aktif">AKTIF</span>
+          </div>
+          <div class="id-mock-body">
+            <div class="id-mock-photo">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 19.2c1.4-3.3 4-4.9 7.5-4.9s6.1 1.6 7.5 4.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </div>
+            <div class="id-mock-lines">
+              <div class="l1"></div>
+              <div class="l2"></div>
+              <div class="l3"></div>
+            </div>
+          </div>
+          <div class="id-mock-foot">
+            <small>Guru & Tenaga<br>Kependidikan</small>
+            <div class="id-mock-qr"></div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- ===================== CARA KERJA ===================== -->
+  <section class="steps">
+    <div class="steps-head">
+      <div class="eyebrow">Cara Kerja</div>
+      <h2>Tiga Langkah Sederhana</h2>
+      <p>Dari mengecek data sampai kartu siap dicetak.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Lihat Data</h3>
+        <p>Cek nama, NUPTK, dan jabatan Anda di tab "Data Guru & Tendik" — bisa dilihat langsung tanpa kode apa pun.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Masukkan Kode & PIN</h3>
+        <p>Saat siap membuat kartu, buka tab "Buat Kartu ID" dan masukkan Kode Sekolah serta PIN pribadi Anda.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Unduh Kartu ID</h3>
+        <p>Pratinjau kartu langsung muncul di layar. Unduh dalam format PDF, siap dicetak atau disimpan digital.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== APLIKASI ===================== -->
+  <div class="app-wrap">
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="tabDaftar">Data Guru & Tendik</button>
+      <button class="tab-btn" data-tab="tabKartu">Buat Kartu ID</button>
+      <button class="tab-btn" data-tab="tabFaq">FAQ</button>
+    </div>
+
+    <!-- ---------- TAB 1: DAFTAR GURU & TENDIK (tampil langsung, tanpa kode) ---------- -->
+    <div class="tab-panel active" id="tabDaftar">
+      <div class="card">
+        <div class="dir-head">
+          <h2>Data Guru & Tenaga Kependidikan Aktif</h2>
+          <p>Tersimpan langsung dari data pegawai aktif SMKS Ciledug Al-Musaddadiyah Garut.</p>
+        </div>
+        <div class="dir-filters">
+          <select id="dirFilterKategori">
+            <option value="">Semua Kategori</option>
+            <option value="guru">Guru</option>
+            <option value="tenaga kependidikan">Tenaga Kependidikan</option>
+          </select>
+          <input type="text" id="dirSearch" placeholder="Cari nama / NUPTK...">
+        </div>
+        <div class="dir-list" id="dirList">
+          <div class="dir-empty">Memuat data...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- TAB 2: BUAT KARTU ID (kode sekolah diminta di sini) ---------- -->
+    <div class="tab-panel" id="tabKartu">
+      <div class="card">
+        <div class="dir-head">
+          <h2>Buat & Unduh Kartu ID</h2>
+          <p>Kode Sekolah dan PIN Pribadi hanya diperlukan saat membuat kartu ID.</p>
+        </div>
+
+        <label for="kodeSekolah">Kode Sekolah</label>
+        <input type="password" id="kodeSekolah" placeholder="Masukkan kode sekolah" autocomplete="off">
+        <div class="hint">Kode ini diberikan oleh admin/Tata Usaha sekolah.</div>
+
+        <label for="namaSelect">Pilih Nama Anda</label>
+        <select id="namaSelect">
+          <option value="">-- Memuat daftar nama... --</option>
+        </select>
+        <div class="hint">Hanya guru/tenaga kependidikan berstatus aktif yang muncul di daftar ini.</div>
+
+        <label for="pin">PIN Pribadi</label>
+        <input type="password" id="pin" placeholder="6 digit PIN" inputmode="numeric" maxlength="6" autocomplete="off">
+        <div class="hint">PIN pribadi Anda diberikan oleh admin, bersifat rahasia. Jangan dibagikan.</div>
+
+        <button id="btnBuat">Buat & Unduh Kartu ID</button>
+        <div class="msg" id="msgForm"></div>
+
+        <div class="result" id="hasil">
+          <iframe id="previewPdf" title="Preview Kartu ID"></iframe>
+          <br>
+          <a class="btn-download" id="linkDownload" download>Unduh PDF Kartu ID</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- TAB 3: FAQ ---------- -->
+    <div class="tab-panel" id="tabFaq">
+      <div class="card">
+        <div class="faq-head">
+          <h2>Pertanyaan yang Sering Diajukan</h2>
+          <p>Belum menemukan jawabannya? Hubungi admin/Tata Usaha sekolah.</p>
+        </div>
+        <div id="faqContainer"></div>
+      </div>
+    </div>
+
+    <div class="footer">© SMKS Ciledug Al Musaddadiyah Garut</div>
   </div>
 
-  <div class="footer">© SMKS Ciledug Al Musaddadiyah Garut</div>
 </div>
 
 <script>
@@ -169,11 +550,7 @@
   // ============================================================
   const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEiTJ9Zz-tO8zm7vMoMTRlHsnl8qlQc_v57Y1YXSDSLEm9Vaoa0qZq3lJ01ia-BiMnyQ/exec';
 
-  const stepKode   = document.getElementById('stepKode');
-  const stepForm   = document.getElementById('stepForm');
   const kodeInput  = document.getElementById('kodeSekolah');
-  const btnBuka    = document.getElementById('btnBukaForm');
-  const msgKode    = document.getElementById('msgKode');
   const namaSelect = document.getElementById('namaSelect');
   const pinInput   = document.getElementById('pin');
   const btnBuat    = document.getElementById('btnBuat');
@@ -182,7 +559,11 @@
   const previewPdf = document.getElementById('previewPdf');
   const linkDownload = document.getElementById('linkDownload');
 
-  let kodeSekolahTersimpan = '';
+  const dirList          = document.getElementById('dirList');
+  const dirFilterKategori= document.getElementById('dirFilterKategori');
+  const dirSearch        = document.getElementById('dirSearch');
+
+  let daftarPegawai = []; // hasil dari action=list, dipakai bersama oleh dropdown & direktori
 
   function tampilkanPesan(el, tipe, teks){
     el.className = 'msg ' + tipe;
@@ -190,53 +571,123 @@
     el.style.display = 'block';
   }
 
-  // Langkah 1: validasi Kode Sekolah sekaligus memuat daftar nama aktif
-  btnBuka.addEventListener('click', async () => {
-    const kode = kodeInput.value.trim();
-    if(!kode){
-      tampilkanPesan(msgKode, 'error', 'Kode sekolah wajib diisi.');
-      return;
-    }
-    btnBuka.disabled = true;
-    btnBuka.innerHTML = '<span class="spinner"></span>Memeriksa...';
+  function inisial(nama){
+    if(!nama) return '?';
+    const parts = nama.trim().split(/\s+/);
+    const a = parts[0] ? parts[0][0] : '';
+    const b = parts.length > 1 ? parts[parts.length - 1][0] : '';
+    return (a + b).toUpperCase();
+  }
 
+  // ============================================================
+  // Memuat daftar pegawai aktif begitu halaman dibuka — TANPA kode sekolah.
+  // Data ini dipakai bersama oleh tab "Data Guru & Tendik" (langsung tampil)
+  // dan dropdown nama di tab "Buat Kartu ID". Kode Sekolah baru diminta
+  // nanti, saat pegawai menekan tombol "Buat & Unduh Kartu ID".
+  // ============================================================
+  async function muatDaftarPegawai(){
     try{
-      const url = `${APP_SCRIPT_URL}?action=list&kode=${encodeURIComponent(kode)}`;
+      const url = `${APP_SCRIPT_URL}?action=list`;
       const res = await fetch(url);
       const data = await res.json();
 
       if(data.status !== 'ok'){
-        tampilkanPesan(msgKode, 'error', data.message || 'Kode sekolah tidak valid.');
-        btnBuka.disabled = false;
-        btnBuka.textContent = 'Lanjutkan';
+        dirList.innerHTML = `<div class="dir-empty">${data.message || 'Gagal memuat data.'}</div>`;
+        namaSelect.innerHTML = '<option value="">-- Gagal memuat nama --</option>';
         return;
       }
 
-      kodeSekolahTersimpan = kode;
-      namaSelect.innerHTML = '<option value="">-- Pilih nama --</option>';
-      data.data.forEach(item => {
-        const opt = document.createElement('option');
-        opt.value = item.nama;
-        opt.textContent = `${item.nama} (${item.kategori})`;
-        namaSelect.appendChild(opt);
-      });
-
-      stepKode.style.display = 'none';
-      stepForm.style.display = 'block';
+      daftarPegawai = data.data || [];
+      isiDropdownNama(daftarPegawai);
+      renderDirektori();
     }catch(err){
-      tampilkanPesan(msgKode, 'error', 'Gagal terhubung ke server. Coba lagi.');
-      btnBuka.disabled = false;
-      btnBuka.textContent = 'Lanjutkan';
+      dirList.innerHTML = '<div class="dir-empty">Gagal terhubung ke server. Muat ulang halaman untuk coba lagi.</div>';
+      namaSelect.innerHTML = '<option value="">-- Gagal memuat nama --</option>';
     }
+  }
+  muatDaftarPegawai();
+
+  function isiDropdownNama(list){
+    namaSelect.innerHTML = '<option value="">-- Pilih nama --</option>';
+    list.forEach(item => {
+      const opt = document.createElement('option');
+      opt.value = item.nama;
+      opt.textContent = `${item.nama} (${item.kategori})`;
+      namaSelect.appendChild(opt);
+    });
+  }
+
+  // ============================================================
+  // Tab switching
+  // ============================================================
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
   });
 
+  // ============================================================
+  // Tab 1: Direktori Guru & Tendik (foto menggantikan kolom status)
+  // ============================================================
+  function renderDirektori(){
+    const kategoriFilter = dirFilterKategori.value.trim().toLowerCase();
+    const q = dirSearch.value.trim().toLowerCase();
+
+    const hasil = daftarPegawai.filter(item => {
+      const kategoriOk = !kategoriFilter || (item.kategori || '').toLowerCase() === kategoriFilter;
+      const teksCari = `${item.nama || ''} ${item.nuptk || ''}`.toLowerCase();
+      const cariOk = !q || teksCari.includes(q);
+      return kategoriOk && cariOk;
+    });
+
+    if(hasil.length === 0){
+      dirList.innerHTML = '<div class="dir-empty">Tidak ada data yang cocok.</div>';
+      return;
+    }
+
+    dirList.innerHTML = '';
+    hasil.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'dir-item';
+
+      // Foto diambil langsung dari data input (kolom Foto URL di sheet).
+      // Jika tidak ada foto, tampilkan avatar inisial sebagai pengganti.
+      const avatarHtml = item.fotoThumb
+        ? `<img class="dir-avatar" src="${item.fotoThumb}" alt="Foto ${item.nama}" onerror="this.outerHTML='<div class=\\'dir-avatar\\'>${inisial(item.nama)}</div>'">`
+        : `<div class="dir-avatar">${inisial(item.nama)}</div>`;
+
+      row.innerHTML = `
+        ${avatarHtml}
+        <div class="dir-info">
+          <div class="dir-nama">${item.nama || '-'}</div>
+          <div class="dir-sub">${item.nuptk ? 'NUPTK: ' + item.nuptk : 'NUPTK: -'} · ${item.jabatan || '-'}</div>
+        </div>
+        <div class="dir-badge">${item.kategori || '-'}</div>
+      `;
+      dirList.appendChild(row);
+    });
+  }
+
+  dirFilterKategori.addEventListener('change', renderDirektori);
+  dirSearch.addEventListener('input', renderDirektori);
+
+  // ============================================================
   // Langkah 2: buat kartu ID
+  // ============================================================
   btnBuat.addEventListener('click', async () => {
+    const kodeSekolah = kodeInput.value.trim();
     const nama = namaSelect.value;
     const pin = pinInput.value.trim();
     hasil.style.display = 'none';
     msgForm.style.display = 'none';
 
+    if(!kodeSekolah){
+      tampilkanPesan(msgForm, 'error', 'Kode sekolah wajib diisi.');
+      return;
+    }
     if(!nama){
       tampilkanPesan(msgForm, 'error', 'Silakan pilih nama Anda terlebih dahulu.');
       return;
@@ -254,7 +705,7 @@
       const res = await fetch(APP_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ nama, pin, kodeSekolah: kodeSekolahTersimpan })
+        body: JSON.stringify({ nama, pin, kodeSekolah })
       });
       const data = await res.json();
 
@@ -284,6 +735,63 @@
       btnBuat.disabled = false;
       btnBuat.textContent = 'Buat & Unduh Kartu ID';
     }
+  });
+
+  // ============================================================
+  // Tab 3: FAQ
+  // ============================================================
+  const FAQ = [
+    {
+      q: 'Kenapa saya bisa langsung melihat daftar tanpa memasukkan kode apa pun?',
+      a: 'Tab "Data Guru & Tendik" hanya menampilkan info dasar (nama, NUPTK, jabatan, foto) sehingga bisa dilihat langsung. Kode Sekolah dan PIN Pribadi baru diminta saat Anda ingin membuat dan mengunduh kartu ID dalam bentuk PDF, karena proses itu yang perlu dijaga keamanannya.'
+    },
+    {
+      q: 'Apa bedanya Kode Sekolah dan PIN Pribadi?',
+      a: 'Kode Sekolah adalah kunci umum yang sama untuk semua guru/tendik agar pembuatan kartu ID hanya bisa dilakukan oleh warga sekolah. PIN Pribadi adalah 6 digit angka yang berbeda untuk setiap orang dan hanya digunakan saat membuat kartu ID milik Anda sendiri.'
+    },
+    {
+      q: 'Bagaimana jika saya lupa PIN Pribadi?',
+      a: 'Hubungi admin/Tata Usaha sekolah untuk mereset atau melihat kembali PIN Anda. PIN tidak dapat dilihat sendiri melalui halaman ini demi keamanan data.'
+    },
+    {
+      q: 'Kenapa nama saya tidak muncul di daftar?',
+      a: 'Daftar hanya menampilkan pegawai dengan status "Aktif" di data sekolah. Jika nama Anda belum muncul, kemungkinan status Anda belum diperbarui — silakan hubungi admin/Tata Usaha.'
+    },
+    {
+      q: 'Apa yang terjadi jika saya salah memasukkan PIN berkali-kali?',
+      a: 'Setelah 5 kali percobaan PIN yang salah, akses pembuatan kartu untuk nama tersebut akan dikunci sementara selama 15 menit sebagai perlindungan terhadap percobaan tebak PIN.'
+    },
+    {
+      q: 'Dari mana foto pada daftar dan kartu ID diambil?',
+      a: 'Foto diambil otomatis dari data pegawai yang sudah diinput oleh admin (kolom Foto). Jika foto belum tersedia, sistem menampilkan inisial nama sebagai pengganti sementara.'
+    },
+    {
+      q: 'Bagaimana cara mengunduh kartu ID dalam bentuk PDF?',
+      a: 'Buka tab "Buat Kartu ID", pilih nama Anda, masukkan PIN Pribadi, lalu tekan tombol "Buat & Unduh Kartu ID". Pratinjau kartu akan muncul dan Anda bisa mengunduh filenya lewat tombol "Unduh PDF Kartu ID".'
+    },
+    {
+      q: 'Apakah data dan foto saya aman?',
+      a: 'Akses ke data hanya bisa dilakukan setelah memasukkan Kode Sekolah dan, untuk membuat kartu, PIN Pribadi. Data disimpan di Google Sheet milik sekolah dan tidak dibagikan ke pihak luar.'
+    }
+  ];
+
+  const faqContainer = document.getElementById('faqContainer');
+  FAQ.forEach((item, idx) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'faq-item';
+    wrap.innerHTML = `
+      <button type="button" class="faq-q">
+        <span>${item.q}</span>
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-a"><p>${item.a}</p></div>
+    `;
+    wrap.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = wrap.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+      if(!isOpen) wrap.classList.add('open');
+    });
+    faqContainer.appendChild(wrap);
   });
 </script>
 </body>
