@@ -310,38 +310,119 @@
   .dir-filters select{width:40%;}
   .dir-filters input{width:60%;}
 
-  .dir-list{display:flex;flex-direction:column;gap:10px;}
+  .dir-count{
+    display:inline-block;
+    font-size:11px;font-weight:700;color:var(--biru-tua);
+    background:var(--biru-muda);
+    padding:3px 10px;border-radius:20px;
+    margin-bottom:14px;
+  }
+
+  .dir-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(148px,1fr));
+    gap:14px;
+  }
   .dir-item{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    background:var(--abu-muda);
-    border:1px solid #e3ecfb;
-    border-radius:12px;
-    padding:10px 12px;
+    background:linear-gradient(180deg,#ffffff 0%,#fbfdff 100%);
+    border:1px solid #e6eefc;
+    border-radius:16px;
+    padding:20px 12px 16px;
+    text-align:center;
+    position:relative;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    box-shadow:0 3px 12px rgba(13,110,253,0.06);
+  }
+  .dir-item:hover{
+    transform:translateY(-4px);
+    box-shadow:0 16px 30px rgba(13,110,253,0.16);
+    border-color:#bdd7fc;
+  }
+  .dir-avatar-ring{
+    width:64px;height:64px;
+    margin:0 auto 12px;
+    border-radius:50%;
+    padding:3px;
+    background:var(--biru-gradasi);
+    box-shadow:0 4px 10px rgba(13,110,253,0.25);
   }
   .dir-avatar{
-    width:48px;height:48px;border-radius:50%;
-    object-fit:cover;flex-shrink:0;
+    width:100%;height:100%;border-radius:50%;
+    object-fit:cover;display:block;
+    border:2.5px solid #fff;
     background:var(--biru-gradasi);
+    color:#fff;font-weight:800;font-size:18px;
     display:flex;align-items:center;justify-content:center;
-    color:#fff;font-weight:700;font-size:15px;
-    border:2px solid #fff;
-    box-shadow:0 2px 6px rgba(13,110,253,0.25);
   }
-  .dir-info{flex:1;min-width:0;}
-  .dir-nama{font-weight:700;font-size:14px;color:#1f2937;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .dir-sub{font-size:11.5px;color:var(--abu);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .dir-info{min-width:0;}
+  .dir-nama{
+    font-weight:700;font-size:13px;color:#1f2937;
+    line-height:1.3;
+    margin-bottom:4px;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .dir-sub{
+    font-size:10.5px;color:var(--abu);margin-bottom:10px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
   .dir-badge{
-    font-size:10.5px;font-weight:700;
-    color:var(--biru-tua);background:var(--biru-muda);
-    padding:3px 9px;border-radius:20px;
-    flex-shrink:0;white-space:nowrap;
+    display:inline-block;
+    font-size:9.5px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;
+    padding:4px 11px;border-radius:20px;
+    white-space:nowrap;
   }
+  .dir-badge.guru{background:var(--biru-muda);color:var(--biru-tua);}
+  .dir-badge.tendik{background:#fff2e0;color:var(--aksen-gelap);}
   .dir-empty{
+    grid-column:1/-1;
     text-align:center;color:var(--abu);font-size:13px;
-    padding:26px 10px;
+    padding:32px 10px;
   }
+
+  /* ---------- TAMBAH DATA (TAB 4) ---------- */
+  .mode-toggle{
+    display:flex;gap:6px;
+    background:var(--abu-muda);
+    padding:4px;border-radius:11px;
+    margin-bottom:18px;
+  }
+  .mode-btn{
+    flex:1;border:none;background:transparent;
+    color:var(--abu);font-weight:700;font-size:12.5px;
+    padding:9px 6px;border-radius:8px;cursor:pointer;
+    font-family:var(--font-body);transition:.15s;
+  }
+  .mode-btn.active{background:var(--putih);color:var(--biru-cerah);box-shadow:0 2px 8px rgba(13,110,253,0.15);}
+  .mode-note{
+    font-size:12px;line-height:1.6;color:var(--biru-tua);
+    background:var(--biru-muda);border:1px solid #cfe0fb;
+    border-radius:10px;padding:11px 13px;margin-bottom:16px;
+  }
+  .mode-note.mandiri{background:#fff8ea;border-color:#f6e3b4;color:#8a5a00;}
+
+  .foto-upload{
+    display:flex;align-items:center;gap:14px;
+    margin-top:8px;
+  }
+  .foto-preview{
+    width:64px;height:64px;border-radius:50%;
+    background:var(--abu-muda);border:2px dashed #cfe0fb;
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;flex-shrink:0;
+  }
+  .foto-preview img{width:100%;height:100%;object-fit:cover;}
+  .foto-preview svg{width:24px;height:24px;color:var(--abu);}
+  .foto-upload-btn{
+    flex:1;
+    display:inline-flex;align-items:center;justify-content:center;
+    border:1.5px dashed #cfe0fb;border-radius:10px;
+    padding:11px 12px;font-size:12.5px;font-weight:600;
+    color:var(--biru-cerah);cursor:pointer;text-align:center;
+    background:#fbfdff;
+  }
+  .foto-upload-btn:hover{border-color:var(--biru-cerah);}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .form-row label{margin-top:0;}
 
   /* ---------- FAQ ---------- */
   .faq-head h2{margin:0 0 4px;font-size:16.5px;color:var(--biru-tua);}
@@ -470,6 +551,7 @@
     <div class="tabs">
       <button class="tab-btn active" data-tab="tabDaftar">Data Guru & Tendik</button>
       <button class="tab-btn" data-tab="tabKartu">Buat Kartu ID</button>
+      <button class="tab-btn" data-tab="tabTambah">Tambah Data</button>
       <button class="tab-btn" data-tab="tabFaq">FAQ</button>
     </div>
 
@@ -479,6 +561,7 @@
         <div class="dir-head">
           <h2>Data Guru & Tenaga Kependidikan Aktif</h2>
           <p>Tersimpan langsung dari data pegawai aktif SMKS Ciledug Al-Musaddadiyah Garut.</p>
+          <span class="dir-count" id="dirCount">Memuat data...</span>
         </div>
         <div class="dir-filters">
           <select id="dirFilterKategori">
@@ -527,7 +610,78 @@
       </div>
     </div>
 
-    <!-- ---------- TAB 3: FAQ ---------- -->
+    <!-- ---------- TAB 3: TAMBAH DATA (Admin / Daftar Mandiri) ---------- -->
+    <div class="tab-panel" id="tabTambah">
+      <div class="card">
+        <div class="dir-head">
+          <h2>Tambah Data Guru & Tendik</h2>
+          <p>Admin bisa menambahkan langsung, atau guru/tendik baru mendaftar mandiri untuk diverifikasi admin.</p>
+        </div>
+
+        <div class="mode-toggle">
+          <button type="button" class="mode-btn active" id="modeAdminBtn">Saya Admin</button>
+          <button type="button" class="mode-btn" id="modeMandiriBtn">Guru/Tendik Baru</button>
+        </div>
+
+        <div class="mode-note" id="modeNoteAdmin">
+          Data yang ditambahkan lewat form ini akan <strong>langsung berstatus Aktif</strong> dan tampil di direktori. Wajib memasukkan Kata Sandi Admin.
+        </div>
+        <div class="mode-note mandiri" id="modeNoteMandiri" style="display:none;">
+          Data Anda akan berstatus <strong>Menunggu</strong> sampai diverifikasi oleh admin/Tata Usaha. Tidak perlu kata sandi apa pun.
+        </div>
+
+        <div id="fieldAdminPassword">
+          <label for="adminPassword">Kata Sandi Admin</label>
+          <input type="password" id="adminPassword" placeholder="Masukkan kata sandi admin" autocomplete="off">
+        </div>
+
+        <label for="tambahNama">Nama Lengkap</label>
+        <input type="text" id="tambahNama" placeholder="Nama lengkap sesuai identitas">
+
+        <div class="form-row">
+          <div>
+            <label for="tambahJk">Jenis Kelamin</label>
+            <select id="tambahJk">
+              <option value="">-- Pilih --</option>
+              <option value="Laki-laki">Laki-laki</option>
+              <option value="Perempuan">Perempuan</option>
+            </select>
+          </div>
+          <div>
+            <label for="tambahKategori">Kategori</label>
+            <select id="tambahKategori">
+              <option value="">-- Pilih --</option>
+              <option value="Guru">Guru</option>
+              <option value="Tenaga Kependidikan">Tenaga Kependidikan</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="tambahNuptk">NUPTK (opsional)</label>
+        <input type="text" id="tambahNuptk" placeholder="Kosongkan jika belum ada">
+
+        <label for="tambahJabatan">Jabatan / Mapel / Bidang</label>
+        <input type="text" id="tambahJabatan" placeholder="Contoh: Guru Matematika / Staf Tata Usaha">
+
+        <label for="tambahMasaBerlaku">Masa Berlaku (opsional)</label>
+        <input type="text" id="tambahMasaBerlaku" placeholder="Contoh: 2026/2027">
+
+        <label>Foto (opsional)</label>
+        <div class="foto-upload">
+          <div class="foto-preview" id="fotoPreview">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 19.2c1.4-3.3 4-4.9 7.5-4.9s6.1 1.6 7.5 4.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <label class="foto-upload-btn" for="tambahFoto">Pilih foto dari perangkat</label>
+          <input type="file" id="tambahFoto" accept="image/*" style="display:none;">
+        </div>
+        <div class="hint">Foto akan otomatis dikompres agar cepat diunggah.</div>
+
+        <button id="btnTambah">Kirim Data</button>
+        <div class="msg" id="msgTambah"></div>
+      </div>
+    </div>
+
+    <!-- ---------- TAB 4: FAQ ---------- -->
     <div class="tab-panel" id="tabFaq">
       <div class="card">
         <div class="faq-head">
@@ -560,6 +714,7 @@
   const linkDownload = document.getElementById('linkDownload');
 
   const dirList          = document.getElementById('dirList');
+  const dirCount         = document.getElementById('dirCount');
   const dirFilterKategori= document.getElementById('dirFilterKategori');
   const dirSearch        = document.getElementById('dirSearch');
 
@@ -643,6 +798,8 @@
       return kategoriOk && cariOk;
     });
 
+    dirCount.textContent = `${daftarPegawai.length} pegawai aktif` + (hasil.length !== daftarPegawai.length ? ` · ${hasil.length} cocok filter` : '');
+
     if(hasil.length === 0){
       dirList.innerHTML = '<div class="dir-empty">Tidak ada data yang cocok.</div>';
       return;
@@ -653,19 +810,22 @@
       const row = document.createElement('div');
       row.className = 'dir-item';
 
+      const isGuru = (item.kategori || '').toLowerCase().includes('guru') && !(item.kategori || '').toLowerCase().includes('kependidikan');
+      const badgeClass = isGuru ? 'guru' : 'tendik';
+
       // Foto diambil langsung dari data input (kolom Foto URL di sheet).
       // Jika tidak ada foto, tampilkan avatar inisial sebagai pengganti.
       const avatarHtml = item.fotoThumb
-        ? `<img class="dir-avatar" src="${item.fotoThumb}" alt="Foto ${item.nama}" onerror="this.outerHTML='<div class=\\'dir-avatar\\'>${inisial(item.nama)}</div>'">`
+        ? `<img class="dir-avatar" src="${item.fotoThumb}" alt="Foto ${item.nama}" onerror="this.outerHTML='<div class=&quot;dir-avatar&quot;>${inisial(item.nama)}</div>'">`
         : `<div class="dir-avatar">${inisial(item.nama)}</div>`;
 
       row.innerHTML = `
-        ${avatarHtml}
+        <div class="dir-avatar-ring">${avatarHtml}</div>
         <div class="dir-info">
           <div class="dir-nama">${item.nama || '-'}</div>
-          <div class="dir-sub">${item.nuptk ? 'NUPTK: ' + item.nuptk : 'NUPTK: -'} · ${item.jabatan || '-'}</div>
+          <div class="dir-sub">${item.jabatan || (item.nuptk ? 'NUPTK: ' + item.nuptk : '-')}</div>
+          <span class="dir-badge ${badgeClass}">${item.kategori || '-'}</span>
         </div>
-        <div class="dir-badge">${item.kategori || '-'}</div>
       `;
       dirList.appendChild(row);
     });
@@ -738,7 +898,149 @@
   });
 
   // ============================================================
-  // Tab 3: FAQ
+  // Tab 3: Tambah Data (Admin / Daftar Mandiri)
+  // ============================================================
+  const modeAdminBtn     = document.getElementById('modeAdminBtn');
+  const modeMandiriBtn   = document.getElementById('modeMandiriBtn');
+  const modeNoteAdmin    = document.getElementById('modeNoteAdmin');
+  const modeNoteMandiri  = document.getElementById('modeNoteMandiri');
+  const fieldAdminPassword = document.getElementById('fieldAdminPassword');
+  const adminPasswordInput = document.getElementById('adminPassword');
+
+  const tambahNama       = document.getElementById('tambahNama');
+  const tambahJk         = document.getElementById('tambahJk');
+  const tambahKategori   = document.getElementById('tambahKategori');
+  const tambahNuptk      = document.getElementById('tambahNuptk');
+  const tambahJabatan    = document.getElementById('tambahJabatan');
+  const tambahMasaBerlaku= document.getElementById('tambahMasaBerlaku');
+  const tambahFoto       = document.getElementById('tambahFoto');
+  const fotoPreview       = document.getElementById('fotoPreview');
+  const btnTambah         = document.getElementById('btnTambah');
+  const msgTambah          = document.getElementById('msgTambah');
+
+  let modeSaatIni = 'admin'; // 'admin' atau 'mandiri'
+  let fotoBase64 = '';
+  let fotoMime = '';
+
+  modeAdminBtn.addEventListener('click', () => {
+    modeSaatIni = 'admin';
+    modeAdminBtn.classList.add('active');
+    modeMandiriBtn.classList.remove('active');
+    modeNoteAdmin.style.display = 'block';
+    modeNoteMandiri.style.display = 'none';
+    fieldAdminPassword.style.display = 'block';
+  });
+
+  modeMandiriBtn.addEventListener('click', () => {
+    modeSaatIni = 'mandiri';
+    modeMandiriBtn.classList.add('active');
+    modeAdminBtn.classList.remove('active');
+    modeNoteMandiri.style.display = 'block';
+    modeNoteAdmin.style.display = 'none';
+    fieldAdminPassword.style.display = 'none';
+  });
+
+  // Kompres foto di sisi browser (max lebar 480px, JPEG kualitas 0.75)
+  // supaya ukuran base64 yang dikirim ke Apps Script tetap ringan.
+  tambahFoto.addEventListener('change', () => {
+    const file = tambahFoto.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const img = new Image();
+      img.onload = () => {
+        const maxLebar = 480;
+        const skala = Math.min(1, maxLebar / img.width);
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width * skala;
+        canvas.height = img.height * skala;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.75);
+        fotoMime = 'image/jpeg';
+        fotoBase64 = dataUrl.split(',')[1];
+
+        fotoPreview.innerHTML = `<img src="${dataUrl}" alt="Preview foto">`;
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  btnTambah.addEventListener('click', async () => {
+    msgTambah.style.display = 'none';
+
+    const nama = tambahNama.value.trim();
+    const jk = tambahJk.value;
+    const kategori = tambahKategori.value;
+    const nuptk = tambahNuptk.value.trim();
+    const jabatan = tambahJabatan.value.trim();
+    const masaBerlaku = tambahMasaBerlaku.value.trim();
+    const adminPassword = adminPasswordInput.value.trim();
+
+    if (!nama) { tampilkanPesan(msgTambah, 'error', 'Nama lengkap wajib diisi.'); return; }
+    if (!kategori) { tampilkanPesan(msgTambah, 'error', 'Kategori wajib dipilih.'); return; }
+    if (!jabatan) { tampilkanPesan(msgTambah, 'error', 'Jabatan / Mapel / Bidang wajib diisi.'); return; }
+    if (modeSaatIni === 'admin' && !adminPassword) {
+      tampilkanPesan(msgTambah, 'error', 'Kata Sandi Admin wajib diisi.');
+      return;
+    }
+
+    const payload = {
+      action: modeSaatIni === 'admin' ? 'tambahAdmin' : 'daftarMandiri',
+      nama, jk, kategori, nuptk, jabatan, masaBerlaku,
+      fotoBase64, fotoMime
+    };
+    if (modeSaatIni === 'admin') payload.adminPassword = adminPassword;
+
+    btnTambah.disabled = true;
+    btnTambah.innerHTML = '<span class="spinner"></span>Mengirim...';
+
+    try {
+      const res = await fetch(APP_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+
+      if (data.status !== 'ok') {
+        tampilkanPesan(msgTambah, 'error', data.message || 'Gagal menambahkan data.');
+        return;
+      }
+
+      const pesanSukses = modeSaatIni === 'admin'
+        ? `${data.message} PIN pribadi: <strong>${data.pin}</strong> (sampaikan ke yang bersangkutan).`
+        : data.message;
+      tampilkanPesan(msgTambah, 'success', pesanSukses);
+
+      // Reset form
+      tambahNama.value = '';
+      tambahJk.value = '';
+      tambahKategori.value = '';
+      tambahNuptk.value = '';
+      tambahJabatan.value = '';
+      tambahMasaBerlaku.value = '';
+      adminPasswordInput.value = '';
+      tambahFoto.value = '';
+      fotoBase64 = '';
+      fotoMime = '';
+      fotoPreview.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3.6" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 19.2c1.4-3.3 4-4.9 7.5-4.9s6.1 1.6 7.5 4.9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+
+      // Kalau ditambahkan admin (langsung aktif), refresh direktori & dropdown
+      if (modeSaatIni === 'admin') muatDaftarPegawai();
+    } catch (err) {
+      tampilkanPesan(msgTambah, 'error', 'Terjadi kesalahan koneksi. Coba lagi.');
+    } finally {
+      btnTambah.disabled = false;
+      btnTambah.textContent = 'Kirim Data';
+    }
+  });
+
+  // ============================================================
+  // Tab 4: FAQ
   // ============================================================
   const FAQ = [
     {
@@ -772,6 +1074,14 @@
     {
       q: 'Apakah data dan foto saya aman?',
       a: 'Akses ke data hanya bisa dilakukan setelah memasukkan Kode Sekolah dan, untuk membuat kartu, PIN Pribadi. Data disimpan di Google Sheet milik sekolah dan tidak dibagikan ke pihak luar.'
+    },
+    {
+      q: 'Bagaimana cara guru/tendik baru mendaftarkan diri?',
+      a: 'Buka tab "Tambah Data", pilih mode "Guru/Tendik Baru", isi data diri lengkap dan foto (opsional), lalu kirim. Data akan berstatus "Menunggu" sampai diverifikasi dan diaktifkan oleh admin/Tata Usaha.'
+    },
+    {
+      q: 'Kenapa data yang baru saya daftarkan belum muncul di direktori?',
+      a: 'Pendaftaran mandiri butuh verifikasi admin terlebih dulu sebelum berstatus Aktif. Jika sudah lama menunggu, silakan hubungi admin/Tata Usaha sekolah.'
     }
   ];
 
