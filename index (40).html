@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kartu ID Guru & Tenaga Kependidikan - SMKS Ciledug Al Musaddadiyah Garut</title>
+<style>
+  :root{
+    --biru-cerah: #0d6efd;
+    --biru-tua: #084298;
+    --biru-muda: #e8f1ff;
+    --biru-gradasi: linear-gradient(135deg, #1e88f5 0%, #0d6efd 55%, #084298 100%);
+    --putih: #ffffff;
+    --abu: #6b7280;
+    --merah: #dc2626;
+    --hijau: #16a34a;
+    --radius: 14px;
+    --shadow: 0 10px 30px rgba(13,110,253,0.18);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--biru-muda);
+    color:#1f2937;
+    min-height:100vh;
+    padding:24px 12px;
+  }
+  .wrap{max-width:480px;margin:0 auto;}
+  .header{
+    background: var(--biru-gradasi);
+    color:var(--putih);
+    border-radius: var(--radius);
+    padding:22px 20px;
+    text-align:center;
+    box-shadow: var(--shadow);
+    margin-bottom:18px;
+  }
+  .header .sekolah{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;opacity:.9;margin-bottom:4px;}
+  .header h1{margin:0;font-size:19px;font-weight:700;}
+  .header p{margin:6px 0 0;font-size:12.5px;opacity:.9;}
+
+  .card{
+    background:var(--putih);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding:22px 20px;
+    margin-bottom:16px;
+  }
+  label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    color:var(--biru-tua);
+    margin:14px 0 6px;
+  }
+  label:first-of-type{margin-top:0;}
+  select, input{
+    width:100%;
+    padding:11px 12px;
+    border:1.5px solid #cfe0fb;
+    border-radius:10px;
+    font-size:14.5px;
+    background:#fbfdff;
+    transition:.15s;
+  }
+  select:focus, input:focus{
+    outline:none;
+    border-color:var(--biru-cerah);
+    box-shadow:0 0 0 3px rgba(13,110,253,0.15);
+  }
+  .hint{font-size:11.5px;color:var(--abu);margin-top:5px;}
+
+  button{
+    width:100%;
+    margin-top:20px;
+    padding:13px;
+    border:none;
+    border-radius:12px;
+    background:var(--biru-gradasi);
+    color:var(--putih);
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:.3px;
+    cursor:pointer;
+    transition:.15s;
+  }
+  button:hover:not(:disabled){filter:brightness(1.05);transform:translateY(-1px);}
+  button:disabled{opacity:.6;cursor:not-allowed;}
+
+  .msg{
+    margin-top:14px;
+    padding:11px 13px;
+    border-radius:10px;
+    font-size:13.5px;
+    display:none;
+  }
+  .msg.error{background:#fdecec;color:var(--merah);display:block;border:1px solid #f6c6c6;}
+  .msg.success{background:#eafaf0;color:var(--hijau);display:block;border:1px solid #bfe9cf;}
+  .msg.info{background:var(--biru-muda);color:var(--biru-tua);display:block;border:1px solid #cfe0fb;}
+
+  .spinner{
+    display:inline-block;width:16px;height:16px;
+    border:2.5px solid rgba(255,255,255,.5);
+    border-top-color:#fff;border-radius:50%;
+    animation:spin .7s linear infinite;
+    vertical-align:middle;margin-right:8px;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .result{display:none;text-align:center;}
+  .result iframe{
+    width:100%;height:320px;border:1.5px solid #cfe0fb;border-radius:10px;margin-top:10px;
+  }
+  .btn-download{
+    display:inline-block;margin-top:12px;
+    background:var(--biru-gradasi);color:#fff;
+    padding:11px 18px;border-radius:10px;
+    text-decoration:none;font-weight:700;font-size:14px;
+  }
+  .footer{text-align:center;font-size:11.5px;color:var(--abu);margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="sekolah">SMKS Ciledug Al Musaddadiyah Garut</div>
+    <h1>Kartu ID Digital</h1>
+    <p>Khusus Guru & Tenaga Kependidikan Aktif</p>
+  </div>
+
+  <div class="card" id="stepKode">
+    <label for="kodeSekolah">Kode Sekolah</label>
+    <input type="password" id="kodeSekolah" placeholder="Masukkan kode sekolah" autocomplete="off">
+    <div class="hint">Kode ini diberikan oleh admin/Tata Usaha sekolah.</div>
+    <button id="btnBukaForm">Lanjutkan</button>
+    <div class="msg" id="msgKode"></div>
+  </div>
+
+  <div class="card" id="stepForm" style="display:none;">
+    <label for="namaSelect">Pilih Nama Anda</label>
+    <select id="namaSelect">
+      <option value="">-- Memuat daftar nama... --</option>
+    </select>
+    <div class="hint">Hanya guru/tenaga kependidikan berstatus aktif yang muncul di daftar ini.</div>
+
+    <label for="pin">PIN Pribadi</label>
+    <input type="password" id="pin" placeholder="6 digit PIN" inputmode="numeric" maxlength="6" autocomplete="off">
+    <div class="hint">PIN pribadi Anda diberikan oleh admin, bersifat rahasia. Jangan dibagikan.</div>
+
+    <button id="btnBuat">Buat & Unduh Kartu ID</button>
+    <div class="msg" id="msgForm"></div>
+
+    <div class="result" id="hasil">
+      <iframe id="previewPdf" title="Preview Kartu ID"></iframe>
+      <br>
+      <a class="btn-download" id="linkDownload" download>Unduh PDF Kartu ID</a>
+    </div>
+  </div>
+
+  <div class="footer">© SMKS Ciledug Al Musaddadiyah Garut</div>
+</div>
+
+<script>
+  // ============================================================
+  // GANTI URL INI dengan URL Web App hasil deploy Google Apps Script
+  // (Deploy > New deployment > Web app > Execute as: Me, Access: Anyone)
+  // ============================================================
+  const APP_SCRIPT_URL = 'GANTI_DENGAN_URL_WEB_APP_APPS_SCRIPT';
+
+  const stepKode   = document.getElementById('stepKode');
+  const stepForm   = document.getElementById('stepForm');
+  const kodeInput  = document.getElementById('kodeSekolah');
+  const btnBuka    = document.getElementById('btnBukaForm');
+  const msgKode    = document.getElementById('msgKode');
+  const namaSelect = document.getElementById('namaSelect');
+  const pinInput   = document.getElementById('pin');
+  const btnBuat    = document.getElementById('btnBuat');
+  const msgForm    = document.getElementById('msgForm');
+  const hasil      = document.getElementById('hasil');
+  const previewPdf = document.getElementById('previewPdf');
+  const linkDownload = document.getElementById('linkDownload');
+
+  let kodeSekolahTersimpan = '';
+
+  function tampilkanPesan(el, tipe, teks){
+    el.className = 'msg ' + tipe;
+    el.innerHTML = teks;
+    el.style.display = 'block';
+  }
+
+  // Langkah 1: validasi Kode Sekolah sekaligus memuat daftar nama aktif
+  btnBuka.addEventListener('click', async () => {
+    const kode = kodeInput.value.trim();
+    if(!kode){
+      tampilkanPesan(msgKode, 'error', 'Kode sekolah wajib diisi.');
+      return;
+    }
+    btnBuka.disabled = true;
+    btnBuka.innerHTML = '<span class="spinner"></span>Memeriksa...';
+
+    try{
+      const url = `${APP_SCRIPT_URL}?action=list&kode=${encodeURIComponent(kode)}`;
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if(data.status !== 'ok'){
+        tampilkanPesan(msgKode, 'error', data.message || 'Kode sekolah tidak valid.');
+        btnBuka.disabled = false;
+        btnBuka.textContent = 'Lanjutkan';
+        return;
+      }
+
+      kodeSekolahTersimpan = kode;
+      namaSelect.innerHTML = '<option value="">-- Pilih nama --</option>';
+      data.data.forEach(item => {
+        const opt = document.createElement('option');
+        opt.value = item.nama;
+        opt.textContent = `${item.nama} (${item.kategori})`;
+        namaSelect.appendChild(opt);
+      });
+
+      stepKode.style.display = 'none';
+      stepForm.style.display = 'block';
+    }catch(err){
+      tampilkanPesan(msgKode, 'error', 'Gagal terhubung ke server. Coba lagi.');
+      btnBuka.disabled = false;
+      btnBuka.textContent = 'Lanjutkan';
+    }
+  });
+
+  // Langkah 2: buat kartu ID
+  btnBuat.addEventListener('click', async () => {
+    const nama = namaSelect.value;
+    const pin = pinInput.value.trim();
+    hasil.style.display = 'none';
+    msgForm.style.display = 'none';
+
+    if(!nama){
+      tampilkanPesan(msgForm, 'error', 'Silakan pilih nama Anda terlebih dahulu.');
+      return;
+    }
+    if(!/^\d{6}$/.test(pin)){
+      tampilkanPesan(msgForm, 'error', 'PIN harus 6 digit angka.');
+      return;
+    }
+
+    btnBuat.disabled = true;
+    btnBuat.innerHTML = '<span class="spinner"></span>Membuat kartu...';
+
+    try{
+      // Kirim sebagai text/plain agar tidak memicu CORS preflight ke Apps Script
+      const res = await fetch(APP_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ nama, pin, kodeSekolah: kodeSekolahTersimpan })
+      });
+      const data = await res.json();
+
+      if(data.status !== 'ok'){
+        tampilkanPesan(msgForm, 'error', data.message || 'Gagal membuat kartu.');
+        btnBuat.disabled = false;
+        btnBuat.textContent = 'Buat & Unduh Kartu ID';
+        return;
+      }
+
+      const byteChars = atob(data.pdfBase64);
+      const byteNumbers = new Array(byteChars.length);
+      for (let i = 0; i < byteChars.length; i++) byteNumbers[i] = byteChars.charCodeAt(i);
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: 'application/pdf' });
+      const blobUrl = URL.createObjectURL(blob);
+
+      previewPdf.src = blobUrl;
+      linkDownload.href = blobUrl;
+      linkDownload.download = data.fileName || 'Kartu-ID.pdf';
+      hasil.style.display = 'block';
+
+      tampilkanPesan(msgForm, 'success', 'Kartu ID berhasil dibuat.');
+    }catch(err){
+      tampilkanPesan(msgForm, 'error', 'Terjadi kesalahan koneksi. Coba lagi.');
+    }finally{
+      btnBuat.disabled = false;
+      btnBuat.textContent = 'Buat & Unduh Kartu ID';
+    }
+  });
+</script>
+</body>
+</html>
