@@ -338,17 +338,19 @@
   }
   .dir-card-head{
     background:var(--biru-gradasi);
-    padding:9px 12px 9px 14px;
-    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 12px 10px 14px;
+    display:flex;align-items:flex-start;justify-content:space-between;
     gap:8px;
   }
   .dir-card-head .sekolah{
-    color:#fff;font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    color:#fff;font-size:9px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;
+    line-height:1.45;
+    white-space:normal;word-break:break-word;
   }
   .dir-card-status{
     background:var(--aksen);color:#5c3a00;font-size:8.5px;font-weight:800;
     padding:3px 9px;border-radius:20px;letter-spacing:.3px;flex-shrink:0;
+    margin-top:1px;
   }
   .dir-card-body{padding:16px 16px 14px;}
   .dir-card-top{display:flex;align-items:center;gap:12px;}
@@ -487,6 +489,17 @@
   }
   @media (min-width: 900px){
     .app-wrap{max-width:640px;}
+
+    /* Tab "Data Guru & Tendik" melebar penuh mengikuti lebar Hero/Cara Kerja
+       di atasnya (max-width:1080px), sementara tab lain (form) tetap ringkas
+       agar nyaman diisi. Class .app-wrap-wide di-toggle lewat JS saat
+       tab aktif berubah. */
+    .app-wrap.app-wrap-wide{max-width:1080px;}
+    .app-wrap.app-wrap-wide #tabKartu .card,
+    .app-wrap.app-wrap-wide #tabTambah .card,
+    .app-wrap.app-wrap-wide #tabFaq .card{
+      max-width:640px;margin-left:auto;margin-right:auto;
+    }
   }
 </style>
 </head>
@@ -561,7 +574,7 @@
   </section>
 
   <!-- ===================== APLIKASI ===================== -->
-  <div class="app-wrap">
+  <div class="app-wrap" id="appWrap">
 
     <div class="tabs">
       <button class="tab-btn active" data-tab="tabDaftar">Data Guru & Tendik</button>
@@ -790,12 +803,20 @@
   // ============================================================
   // Tab switching
   // ============================================================
+  const appWrap = document.getElementById('appWrap');
+
+  function terapkanLebarWrap(tabId){
+    appWrap.classList.toggle('app-wrap-wide', tabId === 'tabDaftar');
+  }
+  terapkanLebarWrap('tabDaftar'); // tab awal yang aktif
+
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById(btn.dataset.tab).classList.add('active');
+      terapkanLebarWrap(btn.dataset.tab);
     });
   });
 
@@ -836,7 +857,7 @@
 
       row.innerHTML = `
         <div class="dir-card-head">
-          <span class="sekolah">SMKS Ciledug Al-M</span>
+          <span class="sekolah">SMKS Ciledug Al Musaddadiyah</span>
           <span class="dir-card-status">AKTIF</span>
         </div>
         <div class="dir-card-body">
